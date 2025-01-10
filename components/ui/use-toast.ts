@@ -1,17 +1,24 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
-interface ToastProps {
+interface Toast {
+  id: string
   title?: string
   description?: string
   variant?: 'default' | 'destructive'
 }
 
-export function useToast() {
-  const [toasts, setToasts] = useState<ToastProps[]>([])
+interface ToastContextType {
+  toasts: Toast[]
+  addToast: (toast: Omit<Toast, 'id'>) => void
+  removeToast: (id: string) => void
+}
 
-  const toast = ({ title, description, variant = 'default' }: ToastProps) => {
+export function useToast() {
+  const [toasts, setToasts] = useState<Toast[]>([])
+
+  const toast = ({ title, description, variant = 'default' }: Omit<Toast, 'id'>) => {
     const newToast = { title, description, variant }
     setToasts([...toasts, newToast])
   }

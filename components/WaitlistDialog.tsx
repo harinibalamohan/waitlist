@@ -46,7 +46,7 @@ export default function WaitlistDialog() {
         title: "Success!",
         description: "Thank you for joining our waitlist. We'll be in touch soon!",
       })
-    } catch (error) {
+    } catch (_error) { // Using underscore to indicate intentionally unused parameter
       addToast({
         title: "Error",
         description: "Something went wrong. Please try again later.",
