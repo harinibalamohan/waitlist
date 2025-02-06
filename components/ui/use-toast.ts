@@ -9,17 +9,12 @@ interface Toast {
   variant?: 'default' | 'destructive'
 }
 
-interface ToastContextType {
-  toasts: Toast[]
-  addToast: (toast: Omit<Toast, 'id'>) => void
-  removeToast: (id: string) => void
-}
-
 export function useToast() {
   const [toasts, setToasts] = useState<Toast[]>([])
 
   const toast = ({ title, description, variant = 'default' }: Omit<Toast, 'id'>) => {
-    const newToast = { title, description, variant }
+    const id = Math.random().toString(36).substring(2)
+    const newToast: Toast = { id, title, description, variant }
     setToasts([...toasts, newToast])
   }
 

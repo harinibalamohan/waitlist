@@ -1,33 +1,51 @@
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
+'use client'
 
 export default function Navigation() {
   return (
-    <nav className="bg-white shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex-shrink-0 flex items-center">
-            <Link href="/" className="font-bold text-xl text-primary">
-              StyleMaster
-            </Link>
-          </div>
-          <div className="hidden sm:ml-6 sm:flex sm:items-center">
-            <Link href="#features" className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900">
-              Features
-            </Link>
-            <Link href="#how-it-works" className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900">
-              How It Works
-            </Link>
-            <Link href="#faqs" className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900">
-              FAQs
-            </Link>
-          </div>
-          <div className="hidden sm:ml-6 sm:flex sm:items-center">
-            <Button>Get Started</Button>
-          </div>
+    <header className="fixed top-0 left-0 right-0 z-50">
+      <nav className="container mx-auto">
+        <div className="flex justify-end gap-8 p-4">
+          <button 
+            onClick={() => {
+              const element = document.getElementById('features');
+              element?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="text-gray-300 hover:text-white transition-all duration-300
+                     hover:shadow-[0_0_15px_rgba(255,255,255,0.5)] 
+                     px-4 py-2 rounded-lg hover:bg-white/5
+                     cursor-pointer backdrop-blur-sm"
+          >
+            Features
+          </button>
+          
+          <button 
+            onClick={() => {
+              const element = document.getElementById('how-it-works');
+              element?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="text-gray-300 hover:text-white transition-all duration-300
+                     hover:shadow-[0_0_15px_rgba(255,255,255,0.5)]
+                     px-4 py-2 rounded-lg hover:bg-white/5
+                     cursor-pointer backdrop-blur-sm"
+          >
+            How It Works
+          </button>
+          
+          <button 
+            onClick={() => {
+              const element = document.getElementById('faqs');
+              element?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="text-gray-300 hover:text-white transition-all duration-300
+                     hover:shadow-[0_0_15px_rgba(255,255,255,0.5)]
+                     px-4 py-2 rounded-lg hover:bg-white/5
+                     cursor-pointer backdrop-blur-sm"
+          >
+            FAQs
+          </button>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
   )
 }
 

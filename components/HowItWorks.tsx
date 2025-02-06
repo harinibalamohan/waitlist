@@ -1,5 +1,8 @@
-import Image from 'next/image'
-import { Card, CardContent } from "@/components/ui/card"
+'use client'
+import { motion } from 'framer-motion'
+//import Image from 'next/image'
+//import { Card, CardContent } from "@/components/ui/card"
+
 const steps = [
   {
     title: 'Upload a Photo',
@@ -21,28 +24,42 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-16 bg-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-extrabold text-center text-gray-900 sm:text-4xl mb-12">
+    <section id="how-it-works" className="scroll-mt-24 bg-black py-20">
+      <div className="container mx-auto px-4">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-3xl font-bold text-center mb-16 text-white"
+        >
           How StyleMaster Works
-        </h2>
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+        </motion.h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {steps.map((step, index) => (
-            <Card key={index} className="flex flex-col overflow-hidden bg-[#3B1C32] text-white">
-              <CardContent className="p-0 flex flex-col">
-                <div className="relative w-full aspect-[4/3]">
-                  <Image
-                    src={step.image}
-                    alt={step.title}
-                    fill
-                    className="object-cover object-top"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-lg font-semibold text-center text-white">{step.title}</h3>
-                </div>
-              </CardContent>
-            </Card>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="flex flex-col"
+            >
+              <div className="relative aspect-[4/3] mb-4 rounded-lg overflow-hidden">
+                <img
+                  src={step.image}
+                  alt={step.title}
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <div className="p-4 bg-zinc-900/50 rounded-lg border border-gray-800">
+                <h3 className="text-lg font-semibold mb-2 text-white">
+                  {step.title}
+                </h3>
+                {/* <p className="text-sm text-gray-400">
+                  {step.description}
+                </p> */}
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>
